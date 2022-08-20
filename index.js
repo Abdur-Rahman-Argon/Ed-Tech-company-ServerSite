@@ -33,6 +33,17 @@ async function run() {
       res.send(result);
     });
 
+    //All cart collection here
+    const cartCollection = client.db("service-collection").collection("cart");
+
+    // cart get api
+    app.get("/allService", async (req, res, next) => {
+      const query = {};
+      const cursor = await cartCollection.find(query);
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
     //All review collection here
     const reviewCollection = client.db("All-Reviews").collection("reviews");
 
