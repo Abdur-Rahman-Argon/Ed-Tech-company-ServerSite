@@ -28,6 +28,14 @@ async function run() {
     //All product collection here
     const reviewCollection = client.db("All-Reviews").collection("reviews");
 
+    // public review post api
+    app.post("/publicReview", async (req, res, next) => {
+      const reviews = req.body;
+      const result = await reviewCollection.insertOne(reviews);
+      // const result = await cursor.toArray();
+      res.send({ success: true, result });
+    });
+
     //
   } finally {
     // await client.close();
