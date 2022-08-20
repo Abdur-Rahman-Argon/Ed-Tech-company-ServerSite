@@ -20,12 +20,20 @@ async function run() {
   try {
     await client.connect;
 
-    //All product collection here
-    const productCollection = client
-      .db("product-collection")
-      .collection("allProduct");
+    //All service collection here
+    const serviceCollection = client
+      .db("service-collection")
+      .collection("allService");
 
-    //All product collection here
+    // service get api
+    app.get("/allService", async (req, res, next) => {
+      const query = {};
+      const cursor = await serviceCollection.find(query);
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
+    //All review collection here
     const reviewCollection = client.db("All-Reviews").collection("reviews");
 
     // public review post api
