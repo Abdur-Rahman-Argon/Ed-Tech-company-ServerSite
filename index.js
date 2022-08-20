@@ -36,6 +36,14 @@ async function run() {
       res.send({ success: true, result });
     });
 
+    // public review get api
+    app.get("/publicReview", async (req, res, next) => {
+      const query = {};
+      const cursor = await reviewCollection.find(query);
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
     //
   } finally {
     // await client.close();
